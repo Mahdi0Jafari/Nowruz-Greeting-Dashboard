@@ -3,7 +3,22 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>داشبورد عیدانه | نسخه نئونی پیشرفته</title>
+    <title>داشبورد عیدانه | مدیریت هوشمند تبریکات نوروز ۱۴۰۵ | Nowruz Greeting Dashboard & Checklist</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <meta name="description" content="هوشمندانه به استقبال بهار بروید. با داشبورد عیدانه، لیست تبریکات نوروز را مدیریت کنید، اولویت‌بندی کنید و هیچ تماسی را از قلم نیندازید. Nowruz greeting planner, checklist, and smart dashboard." />
+    <meta name="keywords" content="تبریک عید نوروز, مدیریت تبریکات, برنامه ریزی عید, داشبورد نئونی, نوروز ۱۴۰۵, لیست تبریک عید, Nowruz Dashboard, New Year Greeting Manager, Nowruz Checklist, Persian New Year Planner, Neon Todo List, Holiday Greeting Tracker" />
+    <link rel="canonical" href="https://mahdi0jafari.github.io/Nowruz-Greeting-Dashboard/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mahdi0jafari.github.io/Nowruz-Greeting-Dashboard/" />
+    <meta property="og:title" content="داشبورد عیدانه | هوشمندانه تبریک بگویید | Nowruz Smart Greeting Dashboard" />
+    <meta property="og:description" content="ابزاری حرف‌های برای مدیریت و برنامه‌ریزی تبریکات سال نو با استایل نئونی. Manage your Persian New Year greetings professionally." />
+    <meta property="og:image" content="https://mahdi0jafari.github.io/Nowruz-Greeting-Dashboard/screenshot.jpg" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="داشبورد عیدانه | Nowruz Greeting Dashboard" />
+    <meta property="twitter:description" content="لیست تبریکات عید رو نئونی مدیریت کن! Modern Nowruz checklist and planner." />
+    <meta property="twitter:image" content="https://mahdi0jafari.github.io/Nowruz-Greeting-Dashboard/screenshot.jpg" />
     
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -192,6 +207,26 @@
         </div>
     </main>
 
+    <section class="max-w-4xl mx-auto px-4 mt-20 opacity-40 text-xs leading-relaxed text-white/50 border-t border-white/5 pt-10 mb-10">
+        <h2 class="text-lg font-display mb-4 text-white/80">درباره داشبورد مدیریت تبریکات عید نوروز / About Nowruz Greeting Dashboard</h2>
+        <p>
+            با نزدیک شدن به سال نو و **لحظه سال تحویل ۱۴۰۵**، مدیریت تبریکات به دوستان، همکاران و خانواده اهمیت زیادی پیدا می‌کند. 
+            این **داشبورد نئونی عیدانه** به شما کمک می‌کند تا با قابلیت **اولویت‌بندی تبریکات**، وضعیت تماس‌ها و پیام‌های خود را رصد کنید. 
+            استفاده از تکنولوژی ذخیره‌سازی محلی (Local Storage) امنیت داده‌های شما را تضمین کرده و امکان خروجی گرفتن بصورت JSON، مدیریت لیست‌های طولانی را آسان می‌کند. 
+            فرقی نمی‌کند به دنبال تبریک رسمی هستید یا صمیمی، با این ابزار برنامه‌ریزی و چک‌لیست هوشمند، هیچ تماسی را فراموش نخواهید کرد.
+        </p>
+        <p class="mt-4">
+            Nowruz Greeting Dashboard is a professional tool for managing and prioritizing your Persian New Year greetings. 
+            Features include priority settings, duplicate protection, and JSON export/import. Stay organized during the spring holidays.
+        </p>
+    </section>
+
+    <footer class="max-w-4xl mx-auto px-4 py-8 text-center border-t border-white/5 opacity-60">
+        <p class="text-xs font-display tracking-widest text-white/40">
+            Developed with ❤️ by <a href="https://github.com/Mahdi0Jafari" target="_blank" class="text-primary hover:text-primary-glow transition-all font-bold">Mahdi Jafari</a>
+        </p>
+    </footer>
+
     <script>
         // --- State Management ---
         let greetingsData = JSON.parse(localStorage.getItem('neonNowruzDB')) || [];
@@ -367,7 +402,7 @@
             sortIcon.style.transform = sortAscending ? 'scaleY(1)' : 'scaleY(-1)';
             sortBtn.classList.add('bg-green-500/30');
             setTimeout(() => sortBtn.classList.remove('bg-green-500/30'), 500);
-
+            
             saveData();
             renderList();
         }
@@ -403,7 +438,6 @@
         toggleCompletedBtn.addEventListener('click', toggleCompletedVisibility);
 
         // --- JSON Export / Import Functions ---
-        // (همان توابع قبلی بدون تغییر)
         function exportJSON() {
             if (greetingsData.length === 0) { alert("لیست خالی است!"); return; }
             const dataStr = JSON.stringify(greetingsData, null, 2);
@@ -437,7 +471,7 @@
         });
         exportBtn.addEventListener('click', exportJSON);
 
-        // --- Drag and Drop Functions (اکنون بر اساس ID کار می‌کند) ---
+        // --- Drag and Drop Functions ---
         function dragStart(e) {
             dragStartId = this.getAttribute('data-id');
             this.classList.add('dragging');
@@ -464,12 +498,11 @@
         function moveItemById(dragId, dropId) {
             if(dragId === dropId) return;
             
-            // پیدا کردن ایندکس‌ها در دیتابیس اصلی (نه لیست فیلتر شده)
             const fromIndex = greetingsData.findIndex(p => p.id === dragId);
-            const itemToMove = greetingsData.splice(fromIndex, 1)[0]; // حذف از جای قبلی
+            const itemToMove = greetingsData.splice(fromIndex, 1)[0];
             
-            const toIndex = greetingsData.findIndex(p => p.id === dropId); // پیدا کردن جای جدید
-            greetingsData.splice(toIndex, 0, itemToMove); // درج در جای جدید
+            const toIndex = greetingsData.findIndex(p => p.id === dropId);
+            greetingsData.splice(toIndex, 0, itemToMove);
             
             saveData();
             renderList();
@@ -511,7 +544,6 @@
         function renderList() {
             listContainer.innerHTML = ''; 
 
-            // اعمال فیلتر جستجو و وضعیت تکمیل
             const filteredData = greetingsData.filter(person => {
                 const matchesSearch = person.name.toLowerCase().includes(searchQuery);
                 const isHidden = !showCompleted && person.method !== null;
@@ -633,6 +665,17 @@
 
         renderList();
         updateProgress();
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "داشبورد عیدانه",
+      "url": "https://mahdi0jafari.github.io/Nowruz-Greeting-Dashboard/",
+      "description": "ابزاری برای مدیریت و اولویتبندی لیست تبریکات عید نوروز با رابط کاربری نئونی.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All"
+    }
     </script>
 </body>
 </html>
